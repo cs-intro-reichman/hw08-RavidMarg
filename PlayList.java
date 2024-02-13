@@ -91,8 +91,8 @@ class PlayList {
      *  returns true. */
     public boolean add(int i, Track track) {
         boolean result = true;
-        if((size == 0 && i == 0) || ((size < maxSize) && (i > 0 && i < maxSize))){
-            for (int j = size ; j >= i; j--) {
+        if((size == 0 && i == 0) || ((size < maxSize) && (i >= 0 && i < maxSize))){
+            for (int j = size - 1 ; j >= i; j--) {
                 tracks[j+1] = tracks[j];
             }
             tracks[i] = track;
@@ -101,14 +101,14 @@ class PlayList {
         else {
             result = false;
         }
-        return false;
+        return result;
     }
      
     /** Removes the track in the given index from this list.
      *  If the list is empty, or the given index is negative or too big for this list, 
      *  does nothing and returns -1. */
     public void remove(int i) {
-        if((size < 0) && (i >= 0) && (i <= maxSize)){
+        if((size > 0) && (i >= 0) && (i <= maxSize)){
             for (int j = i; j < size - 1; j++) {
                 tracks[j] = tracks[j+1];
             }
